@@ -1,6 +1,46 @@
 /* You can add global styles to this file, and also import other style files */
 #feedback{
-margin-left: 20%;
-margin-top:5%;
-height:10%
+    margin-left: 20%;
+    margin-top:5%;
+    height:10%
+}
+
+h1{
+    background-color:#FFE4C6;
+    margin-left: 0%;
+    margin-top:0%;
+    color:white;
+    font-family: "verdana";
+    font-size: 2em;
+}
+#container{
+     margin-top:5%;
+}
+input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+.button {
+    background-color: #008CBA; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+li {
+    padding-left: 5px;
+    padding-top: 5px;
+}
+
+li li {
+    padding-left: 0px;
+}
+ul{
+       font-size: 16px;
+    font-family: "verdana";
 }

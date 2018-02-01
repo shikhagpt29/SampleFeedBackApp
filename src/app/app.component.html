@@ -3,16 +3,19 @@
   <h1>
     Welcome to {{ title }}!
   </h1>
+  <div id = "container">
   <input id = "CommentBox" type= "text" placeholder="Write a comment..." #comment > 
-    <button type="submit"  (click)="onClickMe(comment.value)">Sumbit</button>
-
-  
+    <button class="button" type="submit"  (click)="onClickMe(comment)">Sumbit</button>
    
 <app-section *ngFor =" let comments of CommntArr"
-        [value] = "comments.value"
-        [timeStamp] = "comments.timeStamp">
+        [comment]="comments"
+        (onVoted)="onVoted($event)"   (onReplied)="onReplied($event)"  >
 </app-section>
-
+    <ul *ngIf= "Commentreplies">
+    <input type= "text" placeholder="Write a reply..." #reply > 
+    <button  class="button" type="submit"  (click)="onClickReply(reply,Commentreplies)">Comment</button>
+   </ul>
+</div>
 </div>
 
   

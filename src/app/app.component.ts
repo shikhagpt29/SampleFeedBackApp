@@ -7,10 +7,11 @@ import { Icomment } from "./icomment";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  title = 'Feedbackapp';
   CommntArr = [];
-  comment:Icomment ;
-  formatDate(date) {
+  comment:Icomment;
+
+formatDate(date) {
   var monthNames = [
     "January", "February", "March",
     "April", "May", "June", "July",
@@ -21,31 +22,43 @@ export class AppComponent {
   var day = date.getDate();
   var monthIndex = date.getMonth();
   var year = date.getFullYear();
-   var time = date.toTimeString().split(' ')[0].split(':');
-   var hours = (time[0]+24-2)%24; 
-   var mid = this.getAMPM(hours)
+  var time = date.toTimeString().split(' ')[0].split(':');
+  var mid = this.getAMPM((time[0]+24-2)%24);
   return time[0]+':'+time[1]+ ' '+ mid+' '+ day + ' ' + monthNames[monthIndex] + ', ' + year;
 }
 getAMPM(hours){
  var mid='AM';
-    if(hours==0){ //At 00 hours we need to show 12 am
-    hours=12;
-    }
-    else if(hours>12)
-    {
-    hours=hours%12;
-    mid='PM';
-  }
+    if(hours==0){ hours=12; //At 00 hours we need to show 12 am
+    } else if(hours>12){
+    hours=hours%12; mid='PM';}
   return mid
 }
-
-  onClickMe(value){
+  agreed = 0;
+  Commentreplies = null;
+  onVoted(comment: Icomment) {
+    this.agreed++;
+    comment.Likes++;
+  }
+  onReplied(reply: Icomment){
+    this.Commentreplies = reply;
+  }
+  onClickReply(reply,comment){
+  let timeobj = {
+      value :reply.value,
+      timeStamp:this.formatDate(new Date()),
+    }
+    comment.Reply.push(timeobj);
+    reply.value = ' ';
+  }
+  onClickMe(comments){
     let timeobj :Icomment = {
-      value :value,
-      timeStamp:this.formatDate(new Date())
+      value :comments.value,
+      timeStamp:this.formatDate(new Date()),
+      Likes:0,
+      Reply:[]
     };
-     
     this.CommntArr.push(timeobj);
+    comments.value = ' ';
   }
 }
 
